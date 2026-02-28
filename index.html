@@ -1,23 +1,335 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>My First Website</title>
+  <title>Sri Kantamneni | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    :root {
+      --bg: #f5f5f7;
+      --card-bg: #ffffff;
+      --text-main: #222222;
+      --text-sub: #555555;
+      --accent: #2563eb;
+      --accent-soft: #e0e7ff;
+      --border-soft: #e5e7eb;
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      font-family: Arial, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    header {
       display: flex;
       flex-direction: column;
+      gap: 16px;
+      padding: 24px 20px;
+      background: var(--card-bg);
+      border-radius: 18px;
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 24px;
+    }
+
+    @media (min-width: 700px) {
+      header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .intro-text {
+      max-width: 580px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 4px;
+    }
+
+    .title {
+      font-size: 1rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .intro-tagline {
+      font-size: 0.98rem;
+      color: var(--text-sub);
+    }
+
+    .intro-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--text-main);
+      background: white;
+      transition: 0.2s;
+    }
+
+    .button:hover {
+      background: #f0f4ff;
+    }
+
+    .avatar-circle {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 20%, #93c5fd, #1d4ed8);
+      display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      color: white;
+      font-weight: 700;
+      font-size: 1.6rem;
+      box-shadow: var(--shadow-soft);
     }
-    h1 { color: #333; }
-    p { color: #555; }
+
+    main {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 799px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    section {
+      background: var(--card-bg);
+      border-radius: 18px;
+      padding: 20px 18px;
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 0.92rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      background: var(--accent-soft);
+      color: #1d4ed8;
+      border: 1px solid rgba(37, 99, 235, 0.25);
+      white-space: nowrap;
+    }
+
+    .list {
+      list-style: none;
+      margin-top: 6px;
+    }
+
+    .list-item {
+      border-top: 1px solid var(--border-soft);
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+
+    .list-item:first-child {
+      border-top: none;
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    .item-title {
+      font-weight: 600;
+    }
+
+    .item-meta {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .contact-link {
+      font-size: 0.88rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .contact-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-sub);
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
-  <h1>Welcome to Varsha's Website 👋</h1>
-  <p>Deployed with GitHub + Vercel.</p>
+  <div class="page">
+
+    <header>
+      <div class="intro-text">
+        <div class="title">MS in Computer Science · Backend & Data Projects</div>
+        <h1>Sri Kantamneni</h1>
+        <p class="intro-tagline">
+          Graduate Computer Science student with experience in backend development,
+          database systems, and data-driven applications.
+        </p>
+
+        <div class="intro-actions">
+          <a class="button" href="#contact">Contact Me</a>
+        </div>
+      </div>
+
+      <div class="avatar-circle">SK</div>
+    </header>
+
+    <main>
+      <div>
+
+        <section>
+          <h2>About Me</h2>
+          <p>
+            I am pursuing my Master’s in Computer Science at Wright State University (GPA 3.7).
+            I have experience as a Graduate Teaching Assistant and Backend Developer,
+            building systems using Python, SQL, and modern web technologies.
+          </p>
+        </section>
+
+        <section>
+          <h2>Relevant Projects</h2>
+          <ul class="list">
+            <li class="list-item">
+              <div class="item-title">Reddit Data Archival using Apache Kafka</div>
+              <div class="item-meta">Java · Kafka · Distributed Systems</div>
+              Built scalable producer-consumer pipelines and improved ingestion speed by 60%.
+            </li>
+            <li class="list-item">
+              <div class="item-title">Brain Tumor Classification</div>
+              <div class="item-meta">Deep Learning · VGG16</div>
+              Achieved 90%+ accuracy using transfer learning on MRI datasets.
+            </li>
+            <li class="list-item">
+              <div class="item-title">Currency Recognition System</div>
+              <div class="item-meta">Computer Vision · Mobile App</div>
+              Designed app recognizing 10+ denominations with audio feedback in under 3 seconds.
+            </li>
+          </ul>
+        </section>
+
+      </div>
+
+      <div>
+
+        <section>
+          <h2>Technical Skills</h2>
+          <div class="pill-row">
+            <div class="pill">Python</div>
+            <div class="pill">R</div>
+            <div class="pill">C</div>
+            <div class="pill">HTML</div>
+            <div class="pill">CSS</div>
+            <div class="pill">JavaScript</div>
+            <div class="pill">React.js</div>
+            <div class="pill">SQL (MySQL)</div>
+            <div class="pill">Azure</div>
+            <div class="pill">Tableau</div>
+            <div class="pill">Power BI</div>
+            <div class="pill">Docker</div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Experience</h2>
+          <ul class="list">
+            <li class="list-item">
+              <div class="item-title">Graduate Teaching Assistant</div>
+              <div class="item-meta">Wright State University · 2025</div>
+            </li>
+            <li class="list-item">
+              <div class="item-title">Payroll Management System</div>
+              <div class="item-meta">Kart Solutions · 2024–2025</div>
+            </li>
+            <li class="list-item">
+              <div class="item-title">Backend Developer</div>
+              <div class="item-meta">Horizon Technologies · 2021–2022</div>
+            </li>
+          </ul>
+        </section>
+
+        <section id="contact">
+          <h2>Contact</h2>
+          <div class="contact-links">
+            <a class="contact-link" href="mailto:srikantamneni02@gmail.com">
+              📧 srikantamneni02@gmail.com
+            </a>
+            <a class="contact-link" href="tel:+19375031079">
+              📞 (937) 503-1079
+            </a>
+            <a class="contact-link"
+               href="https://www.linkedin.com/in/sri-kantamneni-05a861225"
+               target="_blank">
+              💼 LinkedIn Profile
+            </a>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Sri Kantamneni · Deployed on Vercel
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
