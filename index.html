@@ -6,14 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --bg: #f5f5f7;
+      --bg: #f5f3f0;
       --card-bg: #ffffff;
-      --text-main: #222222;
-      --text-sub: #555555;
+      --text-main: #1f2933;
+      --text-sub: #616e7c;
       --accent: #2563eb;
       --accent-soft: #e0e7ff;
       --border-soft: #e5e7eb;
-      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.06);
+      --shadow-soft: 0 20px 40px rgba(15, 23, 42, 0.08);
     }
 
     * {
@@ -23,122 +23,253 @@
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
       background: var(--bg);
       color: var(--text-main);
       line-height: 1.6;
     }
 
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
     .page {
-      max-width: 900px;
+      max-width: 1120px;
       margin: 0 auto;
       padding: 24px 16px 48px;
     }
 
-    header {
+    /* ------ Top Nav ------ */
+    .site-header {
       display: flex;
-      flex-direction: column;
-      gap: 16px;
-      padding: 24px 20px;
-      background: var(--card-bg);
-      border-radius: 18px;
-      box-shadow: var(--shadow-soft);
-      margin-bottom: 24px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 4px 18px;
     }
 
-    @media (min-width: 700px) {
-      header {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-      }
-    }
-
-    .intro-text {
-      max-width: 580px;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 4px;
-    }
-
-    .title {
-      font-size: 1rem;
-      color: var(--accent);
+    .logo {
+      font-size: 1.2rem;
       font-weight: 600;
-      margin-bottom: 8px;
+      letter-spacing: 0.03em;
     }
 
-    .intro-tagline {
-      font-size: 0.98rem;
+    .logo span {
+      font-weight: 400;
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      text-transform: uppercase;
+      margin-left: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 0.9rem;
       color: var(--text-sub);
     }
 
-    .intro-actions {
+    .nav-links a {
+      position: relative;
+      padding-bottom: 3px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 720px) {
+      .site-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* ------ Hero Section ------ */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: center;
+      background: linear-gradient(135deg, #f9f6f1, #f4f5fb);
+      border-radius: 26px;
+      padding: 40px 40px 40px;
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 32px;
+    }
+
+    .hero-kicker {
+      font-size: 0.9rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-family: "Georgia", "Times New Roman", serif;
+      font-size: 2.3rem;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-sub);
+      max-width: 32rem;
+      margin-bottom: 22px;
+    }
+
+    .hero-actions {
       display: flex;
-      gap: 10px;
-      margin-top: 14px;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
-    .button {
-      padding: 8px 16px;
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 18px;
       border-radius: 999px;
-      border: 1px solid var(--border-soft);
       font-size: 0.9rem;
       cursor: pointer;
-      text-decoration: none;
-      color: var(--text-main);
-      background: white;
-      transition: 0.2s;
+      border: 1px solid transparent;
+      transition: background 0.15s ease, transform 0.1s ease,
+        box-shadow 0.15s ease, border-color 0.15s ease;
     }
 
-    .button:hover {
-      background: #f0f4ff;
+    .btn-primary {
+      background: #1f2937;
+      color: #f9fafb;
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.35);
     }
 
-    .avatar-circle {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 20%, #93c5fd, #1d4ed8);
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.45);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: #111827;
+      border-color: #d2d6dc;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(209, 213, 219, 0.2);
+    }
+
+    .hero-note {
+      margin-top: 14px;
+      font-size: 0.8rem;
+      color: var(--text-sub);
+    }
+
+    .hero-photo-wrapper {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .hero-photo-card {
+      background: radial-gradient(circle at 20% 0%, #e0e7ff, #4f46e5);
+      border-radius: 999px;
+      width: 230px;
+      height: 230px;
+      box-shadow: 0 24px 45px rgba(79, 70, 229, 0.45);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-weight: 700;
-      font-size: 1.6rem;
-      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
     }
 
+    /* Placeholder initials; you can replace with a real img later */
+    .hero-photo-initials {
+      color: #f9fafb;
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    .hero-photo-tag {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(15, 23, 42, 0.8);
+      color: #e5e7eb;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 28px 22px 30px;
+      }
+
+      .hero-photo-wrapper {
+        justify-content: center;
+      }
+
+      .hero-photo-card {
+        width: 200px;
+        height: 200px;
+      }
+    }
+
+    /* ------ Main Content Cards ------ */
     main {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 20px;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 22px;
     }
 
-    @media (max-width: 799px) {
+    @media (max-width: 900px) {
       main {
         grid-template-columns: 1fr;
       }
     }
 
-    section {
+    section.card {
       background: var(--card-bg);
       border-radius: 18px;
-      padding: 20px 18px;
+      padding: 20px 18px 18px;
       box-shadow: var(--shadow-soft);
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
 
     h2 {
       font-size: 1.1rem;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     p {
       font-size: 0.92rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-sub);
+      margin-bottom: 10px;
     }
 
     .pill-row {
@@ -176,12 +307,20 @@
     }
 
     .item-title {
+      font-size: 0.95rem;
       font-weight: 600;
     }
 
     .item-meta {
       font-size: 0.8rem;
       color: var(--text-sub);
+      margin-top: 2px;
+    }
+
+    .item-body {
+      font-size: 0.86rem;
+      margin-top: 4px;
+      color: #4b5563;
     }
 
     .contact-links {
@@ -194,7 +333,6 @@
     .contact-link {
       font-size: 0.88rem;
       color: var(--accent);
-      text-decoration: none;
     }
 
     .contact-link:hover {
@@ -205,69 +343,120 @@
       text-align: center;
       font-size: 0.78rem;
       color: var(--text-sub);
-      margin-top: 20px;
+      margin-top: 26px;
     }
   </style>
 </head>
 <body>
   <div class="page">
+    <!-- Top nav -->
+    <header class="site-header">
+      <div class="logo">
+        Sri Kantamneni <span>Portfolio</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
 
-    <header>
-      <div class="intro-text">
-        <div class="title">MS in Computer Science </div>
-        <h1>Sri Kantamneni</h1>
-        <p class="intro-tagline">
-          Graduate Computer Science student with experience in backend development,
-          database systems, and data-driven applications.
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="hero-text">
+        <div class="hero-kicker">MS in Computer Science</div>
+        <h1 class="hero-title">
+          Turning complex data and systems into simple, usable solutions.
+        </h1>
+        <p class="hero-subtitle">
+          I’m Sri, a Graduate Computer Science student with experience in backend
+          development, databases, and data-driven applications. I enjoy building
+          reliable systems with Python, SQL, and modern web technologies.
         </p>
 
-        <div class="intro-actions">
-          <a class="button" href="#contact">Contact Me</a>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View My Work</a>
+          <a class="btn btn-ghost" href="#contact">Contact Me</a>
+        </div>
+
+        <div class="hero-note">
+          Currently open to internships and full-time roles in software & data engineering.
         </div>
       </div>
 
-      <div class="avatar-circle">SK</div>
-    </header>
+      <div class="hero-photo-wrapper">
+        <div class="hero-photo-card">
+          <!-- If you add an actual photo, replace this block with:
+               <img src="your-photo.jpg" alt="Sri Kantamneni" class="hero-photo-img" />
+          -->
+          <div class="hero-photo-initials">SK</div>
+          <div class="hero-photo-tag">Backend · Data · Cloud</div>
+        </div>
+      </div>
+    </section>
 
+    <!-- Main content -->
     <main>
       <div>
-
-        <section>
+        <!-- About -->
+        <section class="card" id="about">
           <h2>About Me</h2>
           <p>
-            I pursued my Master’s in Computer Science at Wright State University (GPA 3.7).
-            I have experience as a Graduate Teaching Assistant and Backend Developer,
-            building systems using Python, SQL, and modern web technologies.
+            I am pursuing my Master’s in Computer Science at Wright State
+            University (GPA 3.7). I have experience as a Graduate Teaching
+            Assistant and Backend Developer, building systems using Python, SQL,
+            and modern web technologies. I enjoy working across the stack where
+            data, performance, and user experience intersect.
           </p>
         </section>
 
-        <section>
+        <!-- Projects -->
+        <section class="card" id="projects">
           <h2>Relevant Projects</h2>
+          <div class="section-subtitle">
+            A few highlights from my academic and class projects.
+          </div>
           <ul class="list">
             <li class="list-item">
               <div class="item-title">Reddit Data Archival using Apache Kafka</div>
               <div class="item-meta">Java · Kafka · Distributed Systems</div>
-              Built scalable producer-consumer pipelines and improved ingestion speed by 60%.
+              <div class="item-body">
+                Built a scalable data archival system using a producer–consumer
+                model, handling millions of Reddit posts and improving ingestion
+                speed by 60% in a distributed environment.
+              </div>
             </li>
             <li class="list-item">
               <div class="item-title">Brain Tumor Classification</div>
               <div class="item-meta">Deep Learning · VGG16</div>
-              Achieved 90%+ accuracy using transfer learning on MRI datasets.
+              <div class="item-body">
+                Developed a CNN model using VGG16 and transfer learning to
+                classify MRI images, achieving 90%+ accuracy and helping improve
+                diagnostic speed by 35%.
+              </div>
             </li>
             <li class="list-item">
               <div class="item-title">Currency Recognition System</div>
               <div class="item-meta">Computer Vision · Mobile App</div>
-              Designed app recognizing 10+ denominations with audio feedback in under 3 seconds.
+              <div class="item-body">
+                Designed a smartphone application that recognizes 10+ Indian
+                currency denominations for visually impaired users, providing
+                audio feedback in under three seconds.
+              </div>
             </li>
           </ul>
         </section>
-
       </div>
 
       <div>
-
-        <section>
+        <!-- Skills -->
+        <section class="card" id="skills">
           <h2>Technical Skills</h2>
+          <div class="section-subtitle">
+            Languages, tools, and platforms I’ve used in projects and work.
+          </div>
           <div class="pill-row">
             <div class="pill">Python</div>
             <div class="pill">R</div>
@@ -284,26 +473,47 @@
           </div>
         </section>
 
-        <section>
+        <!-- Experience -->
+        <section class="card" id="experience">
           <h2>Experience</h2>
           <ul class="list">
             <li class="list-item">
               <div class="item-title">Graduate Teaching Assistant</div>
               <div class="item-meta">Wright State University · 2025</div>
+              <div class="item-body">
+                Assisted in grading, student support, and aligning assignments
+                with course objectives, helping improve overall student
+                performance.
+              </div>
             </li>
             <li class="list-item">
               <div class="item-title">Payroll Management System</div>
               <div class="item-meta">Kart Solutions · 2024–2025</div>
+              <div class="item-body">
+                Built a MySQL-based payroll system that automated salary
+                calculations and reduced manual data entry, improving efficiency
+                and data accuracy.
+              </div>
             </li>
             <li class="list-item">
               <div class="item-title">Backend Developer</div>
               <div class="item-meta">Horizon Technologies · 2021–2022</div>
+              <div class="item-body">
+                Developed user registration and login pages and optimized MySQL
+                tables for tracking scooter usage, battery performance, and
+                service history.
+              </div>
             </li>
           </ul>
         </section>
 
-        <section id="contact">
+        <!-- Contact -->
+        <section class="card" id="contact">
           <h2>Contact</h2>
+          <p>
+            If you’d like to connect about opportunities, collaborations, or my
+            work, you can reach me here:
+          </p>
           <div class="contact-links">
             <a class="contact-link" href="mailto:srikantamneni02@gmail.com">
               📧 srikantamneni02@gmail.com
@@ -311,20 +521,14 @@
             <a class="contact-link" href="tel:+19375031079">
               📞 (937) 503-1079
             </a>
-            <a class="contact-link"
-               href="https://www.linkedin.com/in/sri-kantamneni-05a861225"
-               target="_blank">
-            </a>
           </div>
         </section>
-
       </div>
     </main>
 
     <footer>
-      © <span id="year"></span> Sri Kantamneni · Deployed on Vercel
+      © <span id="year"></span> Sri Varsha Kantamneni · Built with HTML &amp; CSS · Deployed on Vercel
     </footer>
-
   </div>
 
   <script>
