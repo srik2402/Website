@@ -2,18 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Sri Varsha Kantamneni | Portfolio</title>
+  <title>Sri Kantamneni | Building Thoughtful Systems</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --bg: #f5f3f0;
-      --card-bg: #ffffff;
-      --text-main: #1f2933;
-      --text-sub: #616e7c;
-      --accent: #2563eb;
-      --accent-soft: #e0e7ff;
-      --border-soft: #e5e7eb;
-      --shadow-soft: 0 20px 40px rgba(15, 23, 42, 0.08);
+      --bg: #0f172a;
+      --bg-soft: #020617;
+      --card-bg: rgba(15, 23, 42, 0.92);
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --text-main: #e5e7eb;
+      --text-sub: #9ca3af;
+      --border-soft: rgba(148, 163, 184, 0.3);
+      --shadow-soft: 0 20px 50px rgba(15, 23, 42, 0.9);
     }
 
     * {
@@ -25,9 +26,10 @@
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         sans-serif;
-      background: var(--bg);
+      background: radial-gradient(circle at top, #020617 0, #020617 35%, #020617 100%);
       color: var(--text-main);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
     a {
@@ -36,93 +38,104 @@
     }
 
     .page {
-      max-width: 1120px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 24px 16px 48px;
+      padding: 24px 16px 56px;
     }
 
-    /* ------ Top Nav ------ */
-    .site-header {
+    /* ---- Simple top bar ---- */
+    .topbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 8px 4px 18px;
+      margin-bottom: 20px;
     }
 
-    .logo {
-      font-size: 1.2rem;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 20% 0%, #38bdf8, #1d4ed8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #f9fafb;
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.4);
+    }
+
+    .brand-text-main {
+      font-size: 1rem;
       font-weight: 600;
-      letter-spacing: 0.03em;
     }
 
-    .logo span {
-      font-weight: 400;
-      font-size: 0.8rem;
+    .brand-text-sub {
+      font-size: 0.78rem;
       color: var(--text-sub);
       text-transform: uppercase;
-      margin-left: 4px;
+      letter-spacing: 0.14em;
     }
 
-    .nav-links {
+    .top-links {
       display: flex;
-      gap: 18px;
-      font-size: 0.9rem;
+      gap: 14px;
+      font-size: 0.8rem;
       color: var(--text-sub);
-      flex-wrap: wrap;
     }
 
-    .nav-links button {
-      border: none;
-      background: transparent;
-      color: inherit;
-      font: inherit;
-      cursor: pointer;
+    .top-links a {
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+    }
+
+    .top-links a:hover {
+      border-color: var(--accent);
+      color: #e5e7eb;
+    }
+
+    /* ---- Hero ---- */
+    .hero {
+      margin-top: 18px;
+      padding: 28px 26px 30px;
+      border-radius: 26px;
+      background: radial-gradient(circle at top left, #1f2937 0, #020617 60%);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+      gap: 30px;
+      align-items: center;
       position: relative;
-      padding: 0 0 3px;
+      overflow: hidden;
     }
 
-    .nav-links button::after {
+    .hero::before {
       content: "";
       position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      transition: width 0.2s ease;
+      inset: -120px;
+      background:
+        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.12) 0, transparent 50%),
+        radial-gradient(circle at 80% 10%, rgba(129, 140, 248, 0.14) 0, transparent 55%);
+      opacity: 0.8;
+      pointer-events: none;
     }
 
-    .nav-links button:hover::after,
-    .nav-links button.active::after {
-      width: 100%;
-    }
-
-    @media (max-width: 720px) {
-      .site-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-      }
-    }
-
-    /* ------ Hero Section ------ */
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-      gap: 40px;
-      align-items: center;
-      background: linear-gradient(135deg, #f9f6f1, #f4f5fb);
-      border-radius: 26px;
-      padding: 40px 40px 40px;
-      box-shadow: var(--shadow-soft);
-      margin-bottom: 32px;
+    .hero-inner {
+      position: relative;
+      z-index: 1;
     }
 
     .hero-kicker {
-      font-size: 0.9rem;
-      color: var(--accent);
+      font-size: 0.8rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.16em;
+      color: var(--accent);
       margin-bottom: 10px;
     }
 
@@ -133,17 +146,22 @@
       margin-bottom: 14px;
     }
 
+    .hero-highlight {
+      color: var(--accent);
+    }
+
     .hero-subtitle {
-      font-size: 0.98rem;
+      font-size: 0.95rem;
       color: var(--text-sub);
       max-width: 32rem;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .hero-actions {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
+      margin-bottom: 14px;
     }
 
     .btn {
@@ -152,143 +170,160 @@
       justify-content: center;
       padding: 9px 18px;
       border-radius: 999px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       cursor: pointer;
       border: 1px solid transparent;
-      transition: background 0.15s ease, transform 0.1s ease,
-        box-shadow 0.15s ease, border-color 0.15s ease;
+      transition: transform 0.15s ease, box-shadow 0.2s ease,
+        background 0.15s ease, border-color 0.15s ease;
+      white-space: nowrap;
     }
 
     .btn-primary {
-      background: #1f2937;
-      color: #f9fafb;
-      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.35);
+      background: #f9fafb;
+      color: #020617;
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.6);
     }
 
     .btn-primary:hover {
       transform: translateY(-1px);
-      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.45);
+      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.85);
     }
 
-    .btn-ghost {
-      background: transparent;
-      color: #111827;
-      border-color: #d2d6dc;
+    .btn-soft {
+      background: rgba(15, 23, 42, 0.65);
+      color: var(--text-main);
+      border-color: rgba(148, 163, 184, 0.5);
     }
 
-    .btn-ghost:hover {
-      background: rgba(209, 213, 219, 0.2);
+    .btn-soft:hover {
+      background: rgba(15, 23, 42, 0.95);
     }
 
     .hero-note {
-      margin-top: 14px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-sub);
     }
 
-    .hero-photo-wrapper {
+    .hero-side {
+      position: relative;
+      z-index: 1;
       display: flex;
-      justify-content: flex-end;
+      align-items: center;
+      justify-content: center;
     }
 
-    .hero-photo-card {
-      background: radial-gradient(circle at 20% 0%, #e0e7ff, #4f46e5);
+    .hero-orbit {
+      width: 220px;
+      height: 220px;
       border-radius: 999px;
-      width: 230px;
-      height: 230px;
-      box-shadow: 0 24px 45px rgba(79, 70, 229, 0.45);
+      border: 1px dashed rgba(148, 163, 184, 0.45);
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
-      overflow: hidden;
     }
 
-    .hero-photo-initials {
-      color: #f9fafb;
-      font-size: 3rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-    }
-
-    .hero-photo-tag {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      background: rgba(15, 23, 42, 0.8);
-      color: #e5e7eb;
-      font-size: 0.75rem;
-      padding: 4px 10px;
+    .hero-avatar {
+      width: 130px;
+      height: 130px;
       border-radius: 999px;
+      background: radial-gradient(circle at 15% 0, #38bdf8, #1d4ed8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #f9fafb;
+      box-shadow: 0 20px 38px rgba(37, 99, 235, 0.65);
     }
 
-    @media (max-width: 900px) {
+    .hero-tag {
+      position: absolute;
+      bottom: 10px;
+      left: 8px;
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.72rem;
+      color: #cbd5f5;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      backdrop-filter: blur(6px);
+    }
+
+    .orbit-dot {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #38bdf8;
+    }
+
+    .orbit-dot:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
+    .orbit-dot:nth-child(2) { right: 0; top: 50%; transform: translateY(-50%); }
+    .orbit-dot:nth-child(3) { bottom: 0; left: 50%; transform: translateX(-50%); }
+    .orbit-dot:nth-child(4) { left: 0; top: 50%; transform: translateY(-50%); }
+
+    @media (max-width: 840px) {
       .hero {
         grid-template-columns: 1fr;
-        padding: 28px 22px 30px;
+        padding: 24px 20px 26px;
+        gap: 22px;
       }
 
-      .hero-photo-wrapper {
-        justify-content: center;
-      }
-
-      .hero-photo-card {
-        width: 200px;
-        height: 200px;
+      .hero-title {
+        font-size: 1.9rem;
       }
     }
 
-    /* ------ Dynamic section area ------ */
-    main {
-      margin-top: 8px;
+    /* ---- Sections ---- */
+    .section {
+      margin-top: 30px;
     }
 
-    .section-wrapper {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: 18px;
-      padding: 20px 18px 18px;
-      box-shadow: var(--shadow-soft);
-      margin-top: 16px;
-    }
-
-    .content-section {
-      display: none;              /* hidden by default */
-      opacity: 0;
-      transform: translateY(6px);
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-
-    .content-section.active {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    h2 {
-      font-size: 1.1rem;
+    .section-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-sub);
       margin-bottom: 8px;
     }
 
-    p {
-      font-size: 0.92rem;
+    .section-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 20px 18px 18px;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      box-shadow: var(--shadow-soft);
     }
 
-    .section-subtitle {
-      font-size: 0.85rem;
+    .section-title {
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .section-intro {
+      font-size: 0.9rem;
       color: var(--text-sub);
       margin-bottom: 10px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 800px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
     }
 
     .pill-row {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
     .pill {
@@ -296,18 +331,18 @@
       border-radius: 999px;
       font-size: 0.78rem;
       background: var(--accent-soft);
-      color: #1d4ed8;
-      border: 1px solid rgba(37, 99, 235, 0.25);
+      color: #e0f2fe;
+      border: 1px solid rgba(56, 189, 248, 0.4);
       white-space: nowrap;
     }
 
     .list {
       list-style: none;
-      margin-top: 6px;
+      margin-top: 8px;
     }
 
     .list-item {
-      border-top: 1px solid var(--border-soft);
+      border-top: 1px solid rgba(51, 65, 85, 0.85);
       padding-top: 10px;
       margin-top: 10px;
     }
@@ -324,27 +359,82 @@
     }
 
     .item-meta {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-sub);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
       margin-top: 2px;
     }
 
     .item-body {
       font-size: 0.86rem;
+      color: #d1d5db;
       margin-top: 4px;
-      color: #4b5563;
+    }
+
+    /* ---- Quote strip ---- */
+    .quote-strip {
+      margin-top: 30px;
+      border-radius: 20px;
+      padding: 18px 18px 16px;
+      background: linear-gradient(90deg, #0b1120, #111827);
+      border: 1px solid rgba(55, 65, 81, 0.85);
+      box-shadow: var(--shadow-soft);
+      font-size: 0.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .quote-mark {
+      font-size: 1.7rem;
+      color: var(--accent);
+      margin-right: 6px;
+    }
+
+    .quote-text {
+      flex: 1;
+      color: #e5e7eb;
+    }
+
+    .quote-tag {
+      font-size: 0.78rem;
+      color: var(--text-sub);
+    }
+
+    /* ---- Contact ---- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 760px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .contact-links {
       display: flex;
       flex-direction: column;
       gap: 6px;
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
     .contact-link {
       font-size: 0.88rem;
-      color: var(--accent);
+      color: #e0f2fe;
+    }
+
+    .contact-link span {
+      color: var(--text-sub);
+      font-size: 0.8rem;
+      margin-right: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
     }
 
     .contact-link:hover {
@@ -355,233 +445,236 @@
       text-align: center;
       font-size: 0.78rem;
       color: var(--text-sub);
-      margin-top: 26px;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <!-- Top nav -->
-    <header class="site-header">
-      <div class="logo">
-        Sri Kantamneni <span>Portfolio</span>
+    <!-- Top bar -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-logo">SK</div>
+        <div>
+          <div class="brand-text-main">Sri Kantamneni</div>
+          <div class="brand-text-sub">Computer Science · Builder</div>
+        </div>
       </div>
-      <nav class="nav-links">
-        <button type="button" data-section="about">About</button>
-        <button type="button" data-section="skills">Skills</button>
-        <button type="button" data-section="projects">Projects</button>
-        <button type="button" data-section="experience">Experience</button>
-        <button type="button" data-section="contact">Contact</button>
+      <nav class="top-links">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
       </nav>
     </header>
 
     <!-- Hero -->
-    <section class="hero" id="top">
-      <div class="hero-text">
-        <div class="hero-kicker">MS in Computer Science</div>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-kicker">MS in Computer Science · Wright State University</div>
         <h1 class="hero-title">
-          Turning complex data and systems into simple, usable solutions.
+          I build <span class="hero-highlight">quietly powerful systems</span>
+          that make people’s work a little lighter every day.
         </h1>
         <p class="hero-subtitle">
-          I’m Sri Varsha, a Graduate Computer Science student with experience in backend
-          development, databases, and data-driven applications. I enjoy building
-          reliable systems with Python, SQL, and modern web technologies.
+          From payroll tools and teaching support to deep learning and data
+          pipelines, I love turning complex ideas into clear, reliable software
+          that actually gets used.
         </p>
 
         <div class="hero-actions">
-          <button class="btn btn-primary" type="button" data-section="projects">
-            View My Work
-          </button>
-          <button class="btn btn-ghost" type="button" data-section="contact">
-            Contact Me
-          </button>
+          <a href="#work" class="btn btn-primary">See what I’ve built</a>
+          <a href="#contact" class="btn btn-soft">Let’s connect</a>
         </div>
 
         <div class="hero-note">
-          Currently open to internships and full-time roles in software &amp; data engineering.
+          Currently exploring opportunities in software engineering, backend
+          development, and data-driven products.
         </div>
       </div>
 
-      <div class="hero-photo-wrapper">
-        <div class="hero-photo-card">
-          <div class="hero-photo-initials">SK</div>
-          <div class="hero-photo-tag">Backend · Data · Cloud</div>
+      <div class="hero-side">
+        <div class="hero-orbit">
+          <div class="hero-avatar">SK</div>
+          <div class="hero-tag">Builder of tools, not noise.</div>
+          <div class="orbit-dot"></div>
+          <div class="orbit-dot"></div>
+          <div class="orbit-dot"></div>
+          <div class="orbit-dot"></div>
         </div>
       </div>
     </section>
 
-    <!-- Dynamic content area -->
-    <main>
-      <div class="section-wrapper">
-
-        <!-- ABOUT -->
-        <section class="card content-section" id="about">
-          <h2>About Me</h2>
-          <p>
-            I pursued my Master’s in Computer Science at Wright State
-            University (GPA 3.7). I have experience as a Graduate Teaching
-            Assistant, Software Developer, Backend Developer, building systems using Python, SQL,
-            and modern web technologies. I enjoy working where data, performance,
-            and user experience intersect.
+    <!-- Story + Skills -->
+    <section class="section" id="about">
+      <div class="section-label">About & Skills</div>
+      <div class="section-card two-col">
+        <div>
+          <h2 class="section-title">A quick snapshot of who I am</h2>
+          <p class="section-intro">
+            I’m a graduate Computer Science student who enjoys solving practical
+            problems with clean code, strong data foundations, and a calm,
+            reliable mindset.
           </p>
-        </section>
+          <p style="font-size:0.9rem; color:#d1d5db;">
+            I’ve worked as a Graduate Teaching Assistant, a backend developer,
+            and on projects ranging from Kafka-based data archival to computer
+            vision for accessibility. My best work happens at the intersection of
+            thoughtful engineering and real-world use cases.
+          </p>
+        </div>
 
-        <!-- SKILLS -->
-        <section class="card content-section" id="skills">
-          <h2>Technical Skills</h2>
-          <div class="section-subtitle">
-            Languages, tools, and platforms I’ve used in projects and work.
-          </div>
+        <div>
+          <h3 style="font-size:0.9rem; margin-bottom:4px;">Tools I’m comfortable with</h3>
+          <p class="section-intro">
+            I prefer strong fundamentals over hype, but I enjoy learning new tools
+            when they genuinely help ship better systems.
+          </p>
           <div class="pill-row">
             <div class="pill">Python</div>
             <div class="pill">R</div>
             <div class="pill">C</div>
-            <div class="pill">HTML</div>
-            <div class="pill">CSS</div>
+            <div class="pill">SQL (MySQL)</div>
+            <div class="pill">HTML &amp; CSS</div>
             <div class="pill">JavaScript</div>
             <div class="pill">React.js</div>
-            <div class="pill">SQL (MySQL)</div>
-            <div class="pill">Azure</div>
             <div class="pill">Tableau</div>
             <div class="pill">Power BI</div>
+            <div class="pill">Azure</div>
             <div class="pill">Docker</div>
           </div>
-        </section>
+        </div>
+      </div>
+    </section>
 
-        <!-- PROJECTS -->
-        <section class="card content-section" id="projects">
-          <h2>Relevant Projects</h2>
-          <div class="section-subtitle">
-            A few highlights from my academic and class projects.
-          </div>
+    <!-- Projects + Experience -->
+    <section class="section" id="work">
+      <div class="section-label">Work & Projects</div>
+      <div class="section-card two-col">
+        <div>
+          <h2 class="section-title">Selected projects</h2>
+          <p class="section-intro">
+            A few things I’m proud of building and learning from.
+          </p>
           <ul class="list">
             <li class="list-item">
               <div class="item-title">Reddit Data Archival using Apache Kafka</div>
-              <div class="item-meta">Java · Kafka · Distributed Systems</div>
+              <div class="item-meta">JAVA · KAFKA · DISTRIBUTED SYSTEMS</div>
               <div class="item-body">
-                Built a scalable data archival system using a producer–consumer
-                model, handling millions of Reddit posts and improving ingestion
-                speed by 60% in a distributed environment.
+                Designed a scalable producer–consumer pipeline that handled
+                millions of Reddit posts and improved ingestion speed by 60%,
+                giving teams a robust stream of data for analysis.
               </div>
             </li>
             <li class="list-item">
               <div class="item-title">Brain Tumor Classification</div>
-              <div class="item-meta">Deep Learning · VGG16</div>
+              <div class="item-meta">DEEP LEARNING · VGG16</div>
               <div class="item-body">
-                Developed a CNN model using VGG16 and transfer learning to
-                classify MRI images, achieving 90%+ accuracy and helping improve
-                diagnostic speed by 35%.
+                Built a CNN model with transfer learning to classify MRI images,
+                achieving 90%+ accuracy and demonstrating how AI can assist
+                clinicians with faster, more informed decisions.
               </div>
             </li>
             <li class="list-item">
               <div class="item-title">Currency Recognition System</div>
-              <div class="item-meta">Computer Vision · Mobile App</div>
+              <div class="item-meta">COMPUTER VISION · ACCESSIBILITY</div>
               <div class="item-body">
-                Designed a smartphone application that recognizes 10+ Indian
-                currency denominations for visually impaired users, providing
-                audio feedback in under three seconds.
+                Created a smartphone app that recognizes 10+ denominations of
+                Indian currency for visually impaired users, with audio feedback
+                in under three seconds.
               </div>
             </li>
           </ul>
-        </section>
+        </div>
 
-        <!-- EXPERIENCE -->
-        <section class="card content-section" id="experience">
-          <h2>Experience</h2>
+        <div>
+          <h2 class="section-title">Recent experience</h2>
+          <p class="section-intro">
+            Roles where I learned to think like an engineer and a teammate.
+          </p>
           <ul class="list">
             <li class="list-item">
               <div class="item-title">Graduate Teaching Assistant</div>
-              <div class="item-meta">Wright State University · 2025</div>
+              <div class="item-meta">WRIGHT STATE UNIVERSITY · 2025</div>
               <div class="item-body">
-                Assisted in grading, student support, and aligning assignments
-                with course objectives, helping improve overall student
-                performance.
+                Supported students with assignments and projects, clarified
+                complex topics, and helped keep coursework aligned with learning
+                outcomes.
               </div>
             </li>
             <li class="list-item">
               <div class="item-title">Payroll Management System</div>
-              <div class="item-meta">Kart Solutions · 2024–2025</div>
+              <div class="item-meta">KART SOLUTIONS · 2024–2025</div>
               <div class="item-body">
                 Built a MySQL-based payroll system that automated salary
-                calculations and reduced manual data entry, improving efficiency
-                and data accuracy.
+                calculations and reduced manual data entry, improving accuracy
+                and saving hours for admins.
               </div>
             </li>
             <li class="list-item">
               <div class="item-title">Backend Developer</div>
-              <div class="item-meta">Horizon Technologies · 2021–2022</div>
+              <div class="item-meta">HORIZON TECHNOLOGIES · 2021–2022</div>
               <div class="item-body">
-                Developed user registration and login pages and optimized MySQL
-                tables for tracking scooter usage, battery performance, and
-                service history.
+                Developed user registration and login flows and optimized
+                database tables for tracking scooter usage, battery performance,
+                and service history.
               </div>
             </li>
           </ul>
-        </section>
+        </div>
+      </div>
+    </section>
 
-        <!-- CONTACT -->
-        <section class="card content-section" id="contact">
-          <h2>Contact</h2>
-          <p>
-            If you’d like to connect about opportunities, collaborations, or my
-            work, you can reach me here:
+    <!-- Values / Quote -->
+    <section class="quote-strip">
+      <div class="quote-mark">“</div>
+      <div class="quote-text">
+        I’m not chasing the flashiest tech stack. I’m more interested in
+        building systems that teammates trust, users enjoy, and that quietly
+        keep working long after the launch week is over.
+      </div>
+      <div class="quote-tag">
+        – How I like to work
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <div class="section-label">Say hello</div>
+      <div class="section-card contact-grid">
+        <div>
+          <h2 class="section-title">Let’s build something useful</h2>
+          <p class="section-intro">
+            If you’re working on software, data, or products where reliability
+            and thoughtfulness matter, I’d love to talk.
           </p>
+          <p style="font-size:0.9rem; color:#d1d5db;">
+            Send me a note with what you’re building, what you’re stuck on, or
+            simply what kind of problems you’re excited about. I’m always happy
+            to connect with people who care about doing good work.
+          </p>
+        </div>
+
+        <div>
+          <h3 style="font-size:0.9rem; margin-bottom:4px;">Reach out</h3>
           <div class="contact-links">
             <a class="contact-link" href="mailto:srikantamneni02@gmail.com">
-              📧 srikantamneni02@gmail.com
+              <span>Email</span> srikantamneni02@gmail.com
             </a>
             <a class="contact-link" href="tel:+19375031079">
-              📞 (937) 503-1079
+              <span>Phone</span> (937) 503-1079
             </a>
           </div>
-        </section>
-
+        </div>
       </div>
-    </main>
+    </section>
 
     <footer>
-      © <span id="year"></span> Sri Varsha Kantamneni · Built with HTML &amp; CSS · Deployed on Vercel
+      © <span id="year"></span> Sri Kantamneni · Built with care · Deployed on Vercel
     </footer>
   </div>
 
   <script>
-    // Set current year
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Handle section switching
-    const sectionButtons = document.querySelectorAll("[data-section]");
-    const sections = document.querySelectorAll(".content-section");
-    const navButtons = document.querySelectorAll(".nav-links button");
-
-    function showSection(id) {
-      // hide all
-      sections.forEach(sec => sec.classList.remove("active"));
-      // remove active state from nav
-      navButtons.forEach(btn => btn.classList.remove("active"));
-
-      const target = document.getElementById(id);
-      if (target) {
-        target.classList.add("active");
-        // highlight corresponding nav button if it exists
-        navButtons.forEach(btn => {
-          if (btn.getAttribute("data-section") === id) {
-            btn.classList.add("active");
-          }
-        });
-        // scroll smoothly so the card is in view
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
-
-    sectionButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const id = btn.getAttribute("data-section");
-        showSection(id);
-      });
-    });
-
-    // NOTE: no section is shown on initial load,
-    // as you requested. User must click a button.
   </script>
 </body>
 </html>
