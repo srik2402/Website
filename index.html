@@ -68,14 +68,20 @@
       gap: 18px;
       font-size: 0.9rem;
       color: var(--text-sub);
+      flex-wrap: wrap;
     }
 
-    .nav-links a {
+    .nav-links button {
+      border: none;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
       position: relative;
-      padding-bottom: 3px;
+      padding: 0 0 3px;
     }
 
-    .nav-links a::after {
+    .nav-links button::after {
       content: "";
       position: absolute;
       left: 0;
@@ -86,7 +92,8 @@
       transition: width 0.2s ease;
     }
 
-    .nav-links a:hover::after {
+    .nav-links button:hover::after,
+    .nav-links button.active::after {
       width: 100%;
     }
 
@@ -95,10 +102,6 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 8px;
-      }
-
-      .nav-links {
-        flex-wrap: wrap;
       }
     }
 
@@ -201,7 +204,6 @@
       overflow: hidden;
     }
 
-    /* Placeholder initials; you can replace with a real img later */
     .hero-photo-initials {
       color: #f9fafb;
       font-size: 3rem;
@@ -236,25 +238,35 @@
       }
     }
 
-    /* ------ Main Content Cards ------ */
+    /* ------ Dynamic section area ------ */
     main {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-      gap: 22px;
+      margin-top: 8px;
     }
 
-    @media (max-width: 900px) {
-      main {
-        grid-template-columns: 1fr;
-      }
+    .section-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
     }
 
-    section.card {
+    .card {
       background: var(--card-bg);
       border-radius: 18px;
       padding: 20px 18px 18px;
       box-shadow: var(--shadow-soft);
-      margin-bottom: 14px;
+      margin-top: 16px;
+    }
+
+    .content-section {
+      display: none;              /* hidden by default */
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .content-section.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
     }
 
     h2 {
@@ -355,11 +367,11 @@
         Sri Kantamneni <span>Portfolio</span>
       </div>
       <nav class="nav-links">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
+        <button type="button" data-section="about">About</button>
+        <button type="button" data-section="skills">Skills</button>
+        <button type="button" data-section="projects">Projects</button>
+        <button type="button" data-section="experience">Experience</button>
+        <button type="button" data-section="contact">Contact</button>
       </nav>
     </header>
 
@@ -371,49 +383,73 @@
           Turning complex data and systems into simple, usable solutions.
         </h1>
         <p class="hero-subtitle">
-          I’m Sri, a Graduate Computer Science student with experience in backend
+          I’m Sri Varsha, a Graduate Computer Science student with experience in backend
           development, databases, and data-driven applications. I enjoy building
           reliable systems with Python, SQL, and modern web technologies.
         </p>
 
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#projects">View My Work</a>
-          <a class="btn btn-ghost" href="#contact">Contact Me</a>
+          <button class="btn btn-primary" type="button" data-section="projects">
+            View My Work
+          </button>
+          <button class="btn btn-ghost" type="button" data-section="contact">
+            Contact Me
+          </button>
         </div>
 
         <div class="hero-note">
-          Currently open to internships and full-time roles in software & data engineering.
+          Currently open to internships and full-time roles in software &amp; data engineering.
         </div>
       </div>
 
       <div class="hero-photo-wrapper">
         <div class="hero-photo-card">
-          <!-- If you add an actual photo, replace this block with:
-               <img src="your-photo.jpg" alt="Sri Kantamneni" class="hero-photo-img" />
-          -->
           <div class="hero-photo-initials">SK</div>
           <div class="hero-photo-tag">Backend · Data · Cloud</div>
         </div>
       </div>
     </section>
 
-    <!-- Main content -->
+    <!-- Dynamic content area -->
     <main>
-      <div>
-        <!-- About -->
-        <section class="card" id="about">
+      <div class="section-wrapper">
+
+        <!-- ABOUT -->
+        <section class="card content-section" id="about">
           <h2>About Me</h2>
           <p>
-            I am pursuing my Master’s in Computer Science at Wright State
+            I pursued my Master’s in Computer Science at Wright State
             University (GPA 3.7). I have experience as a Graduate Teaching
-            Assistant and Backend Developer, building systems using Python, SQL,
-            and modern web technologies. I enjoy working across the stack where
-            data, performance, and user experience intersect.
+            Assistant, Software Developer, Backend Developer, building systems using Python, SQL,
+            and modern web technologies. I enjoy working where data, performance,
+            and user experience intersect.
           </p>
         </section>
 
-        <!-- Projects -->
-        <section class="card" id="projects">
+        <!-- SKILLS -->
+        <section class="card content-section" id="skills">
+          <h2>Technical Skills</h2>
+          <div class="section-subtitle">
+            Languages, tools, and platforms I’ve used in projects and work.
+          </div>
+          <div class="pill-row">
+            <div class="pill">Python</div>
+            <div class="pill">R</div>
+            <div class="pill">C</div>
+            <div class="pill">HTML</div>
+            <div class="pill">CSS</div>
+            <div class="pill">JavaScript</div>
+            <div class="pill">React.js</div>
+            <div class="pill">SQL (MySQL)</div>
+            <div class="pill">Azure</div>
+            <div class="pill">Tableau</div>
+            <div class="pill">Power BI</div>
+            <div class="pill">Docker</div>
+          </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section class="card content-section" id="projects">
           <h2>Relevant Projects</h2>
           <div class="section-subtitle">
             A few highlights from my academic and class projects.
@@ -448,33 +484,9 @@
             </li>
           </ul>
         </section>
-      </div>
 
-      <div>
-        <!-- Skills -->
-        <section class="card" id="skills">
-          <h2>Technical Skills</h2>
-          <div class="section-subtitle">
-            Languages, tools, and platforms I’ve used in projects and work.
-          </div>
-          <div class="pill-row">
-            <div class="pill">Python</div>
-            <div class="pill">R</div>
-            <div class="pill">C</div>
-            <div class="pill">HTML</div>
-            <div class="pill">CSS</div>
-            <div class="pill">JavaScript</div>
-            <div class="pill">React.js</div>
-            <div class="pill">SQL (MySQL)</div>
-            <div class="pill">Azure</div>
-            <div class="pill">Tableau</div>
-            <div class="pill">Power BI</div>
-            <div class="pill">Docker</div>
-          </div>
-        </section>
-
-        <!-- Experience -->
-        <section class="card" id="experience">
+        <!-- EXPERIENCE -->
+        <section class="card content-section" id="experience">
           <h2>Experience</h2>
           <ul class="list">
             <li class="list-item">
@@ -507,8 +519,8 @@
           </ul>
         </section>
 
-        <!-- Contact -->
-        <section class="card" id="contact">
+        <!-- CONTACT -->
+        <section class="card content-section" id="contact">
           <h2>Contact</h2>
           <p>
             If you’d like to connect about opportunities, collaborations, or my
@@ -523,6 +535,7 @@
             </a>
           </div>
         </section>
+
       </div>
     </main>
 
@@ -532,7 +545,43 @@
   </div>
 
   <script>
+    // Set current year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Handle section switching
+    const sectionButtons = document.querySelectorAll("[data-section]");
+    const sections = document.querySelectorAll(".content-section");
+    const navButtons = document.querySelectorAll(".nav-links button");
+
+    function showSection(id) {
+      // hide all
+      sections.forEach(sec => sec.classList.remove("active"));
+      // remove active state from nav
+      navButtons.forEach(btn => btn.classList.remove("active"));
+
+      const target = document.getElementById(id);
+      if (target) {
+        target.classList.add("active");
+        // highlight corresponding nav button if it exists
+        navButtons.forEach(btn => {
+          if (btn.getAttribute("data-section") === id) {
+            btn.classList.add("active");
+          }
+        });
+        // scroll smoothly so the card is in view
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    sectionButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-section");
+        showSection(id);
+      });
+    });
+
+    // NOTE: no section is shown on initial load,
+    // as you requested. User must click a button.
   </script>
 </body>
 </html>
